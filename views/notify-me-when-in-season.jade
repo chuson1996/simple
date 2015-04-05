@@ -1,0 +1,10 @@
+div.formContainer
+    form.horm-horizontal.newsletterForm(role="form", action="/notify-me-when-in-season", method="POST")
+        input(type="hidden", name="sku", value="#{sku}")
+        div.form-group
+            label Email
+            <br>
+            div
+                input.form-control#email(type="email", required, name="email")
+        div.form-group
+            button.btn.btn-btn-default(type="submit") Submit

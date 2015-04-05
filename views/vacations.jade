@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+  head
+    title Vacations
+    if showTests
+        link(rel="stylesheet", href="/vendor/mocha.css")
+    script(src="//code.jquery.com/jquery-2.0.2.min.js")
+    if flash
+        script.
+            alert('#{flash.message}')
+  body
+    h1 Vacations
+    each item in vacations
+        div.vacation
+            h3= item.name
+            p= item.description
+            if item.inSeason
+                span.price #{item.price}
+                a.btn.btn-default(href="/cart/add?sku=#{item.sku}") Buy now!
+                span.outOfSeason We're sorry, this vacation is currently not in season
+
+                a(href="/notify-me-when-in-season?sku=#{item.sku}") Notify me when this vacation is in vacation
+    <hr>
+    a.currency(href="/set-currency/USD") USD
+    a.currency(href="/set-currency/GBP") GBP
+    a.currency(href="/set-currency/BTC") BTC
+
+
+
+
+
+    if showTests
+        div#mocha
+        script(src="/vendor/mocha.js")
+        script(src="/vendor/chai.js")
+        script.
+            mocha.ui('tdd');
+            var assert = chai.assert;
+        script(src='/qa/tests-global.js')
+        if pageTestScript
+            script(src="#{pageTestScript}")
+        script.
+            mocha.run();
+

@@ -1,0 +1,16 @@
+form.form-horizontal(role="form", enctype="multipart/form-data", method="POST", action="/contest/vacation-photo/#{year}/#{month}")
+    div.form-group
+        label.col-sm-2.control-label(for="fieldName") Name
+        div.col-sm-4
+            input#fieldName.form-control(type="text", name="name")
+    div.form-group
+        label.col-sm-2.control-label(for="fieldEmail") Email
+        div.col-sm-4
+            input#fieldEmail.form-control(type="email", required, name="email")
+    div.form-group
+        label.col-sm-2.control-label(for="fieldPhoto") Vacation photo
+        div.col-sm-4
+            input#fieldPhoto.form-control(type="file", required, accept="image/*", name="photo")
+    div.form-group
+        div.col-sm-offset-2.col-sm-4
+            button.btn.btn-primary(type="submit") Hey yo, click here to submit

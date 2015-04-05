@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+    if showTests
+        link(rel="stylesheet", href="/vendor/mocha.css")
+    script(src="//code.jquery.com/jquery-2.0.2.min.js")
+    link(rel="stylesheet",href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css")
+  body
+    h1= title
+    a(href="/contact") To contact
+    if flash
+        div.alert.alert-dismissible.alert-#{flash.type}
+            button.close(data-dismiss="alert", aria-hidden="true") &times;
+            strong #{flash.intro}
+            !{flash.message}
+
+
+    if showTests
+        div#mocha
+        script(src="/vendor/mocha.js")
+        script(src="/vendor/chai.js")
+        script.
+            mocha.ui('tdd');
+            var assert = chai.assert;
+        script(src='/qa/tests-global.js')
+        if pageTestScript
+            script(src="#{pageTestScript}")
+        script.
+            mocha.run();

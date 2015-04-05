@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+    if showTests
+        link(rel="stylesheet", href="/vendor/mocha.css")
+    script(src="//code.jquery.com/jquery-2.0.2.min.js")
+  body
+    h1= title
+    a(href="/contact") Hey what up
+    <br><br>
+    form(method="post", action="#{actionForm}")
+        input(type="email", name="email")
+    if showTests
+        div#mocha
+        script(src="/vendor/mocha.js")
+        script(src="/vendor/chai.js")
+        script.
+            mocha.ui('tdd');
+            var assert = chai.assert;
+        script(src='/qa/tests-global.js')
+        if pageTestScript
+            script(src="#{pageTestScript}")
+        script.
+            mocha.run();
